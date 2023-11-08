@@ -50,6 +50,23 @@ accuracy_hgbc = accuracy_score(y_test, y_pred_hgbc)
 # Streamlit app
 st.title('Car Evaluation Dataset')
 
+st.subheader('Dataset Information')
+st.write(f"Dataset Size: {car_evaluation_df.shape[0]} rows and {car_evaluation_df.shape[1]} columns")
+st.write('Features:', feature_cols)
+st.write('Target:', 'class')
+
+# Display the dataset size
+st.write(f"Dataset size: {X.shape[0]} rows and {X.shape[1]} columns")
+
+# Show the target (class) distribution
+st.write("Target Distribution:")
+st.write(y.value_counts())
+
+# Display the first few rows of the dataset
+st.write("Sample Data:")
+st.write(X.head())
+st.write(y.head())
+
 st.subheader('Decision Tree Classifier')
 st.write(f"Accuracy: {accuracy_dt:.2f}")
 
