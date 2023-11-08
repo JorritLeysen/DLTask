@@ -65,7 +65,6 @@ st.write(f"Accuracy: {accuracy_hgbc:.2f}")
 
 # Run the app
 if __name__ == '__main__':
-    st.set_page_config(layout="wide")
     st.set_option('deprecation.showPyplotGlobalUse', False)
     st.set_option('deprecation.showfileUploaderEncoding', False)
     st.set_option('deprecation.showSetItem', False)
