@@ -62,6 +62,3 @@ st.write(f"Accuracy: {accuracy_hgbc:.2f}")
 # Add more Streamlit components for visualizing EDA and other comparisons
 
 # Display confusion matrices or graphs here
-
-# Run the app
-st.run()
