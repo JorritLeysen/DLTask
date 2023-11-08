@@ -55,9 +55,6 @@ st.write(f"Dataset Size: {car_evaluation_df.shape[0]} rows and {car_evaluation_d
 st.write('Features:', feature_cols)
 st.write('Target:', 'class')
 
-# Display the dataset size
-st.write(f"Dataset size: {X.shape[0]} rows and {X.shape[1]} columns")
-
 # Show the target (class) distribution
 st.write("Target Distribution:")
 st.write(y.value_counts())
