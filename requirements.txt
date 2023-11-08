@@ -2,7 +2,6 @@ pandas
 numpy
 matplotlib
 ucimlrepo
-fetch_ucirepo
 sklearn
 category_encoders
 streamlit
