@@ -65,7 +65,7 @@ def train_model(train_ds, validation_ds, epochs, progress_bar):
 
     # Training Loss
     st.line_chart(training_loss, use_container_width=True)
-    st.subheader("Training Loss")
+    st.header("Training Loss")
 
     # Training Accuracy
     st.line_chart(training_accuracy, use_container_width=True)
