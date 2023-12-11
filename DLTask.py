@@ -60,24 +60,8 @@ def train_model(train_ds, validation_ds, epochs, progress_bar):
 
     st.success("Training complete!")
 
-    # Visualize training history
-    st.header("Training History")
-
-    # Training Loss
-    st.subheader("Training Loss")
-    st.line_chart(training_loss, use_container_width=True)
-    
-    # Training Accuracy
-    st.subheader("Training Accuracy")
-    st.line_chart(training_accuracy, use_container_width=True)
-    
-    # Validation Loss
-    st.subheader("Validation Loss")
-    st.line_chart(validation_loss, use_container_width=True)
-    
-    # Validation Accuracy
-    st.subheader("Validation Accuracy")
-    st.line_chart(validation_accuracy, use_container_width=True)
+    # Return the trained model
+    return model
 
 def main():
     st.title("Google Images Scraper & Classifier with Streamlit")
@@ -125,10 +109,11 @@ def main():
             image_size=(IMG_SIZE, IMG_SIZE)
         )
 
-        train_model(train_ds, validation_ds, epochs, progress_bar)
+        # Train the model and get the trained model
+        trained_model = train_model(train_ds, validation_ds, epochs, progress_bar)
 
         # Evaluate the model on the test dataset
-        test_loss, test_acc = model.evaluate(test_ds)
+        test_loss, test_acc = trained_model.evaluate(test_ds)
         st.subheader("Test Accuracy")
         st.write(f'Test accuracy: {test_acc:.4f}')
 
