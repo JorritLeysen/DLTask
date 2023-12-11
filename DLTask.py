@@ -1,15 +1,8 @@
 import streamlit as st
-import re
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-import time
-import os
-import requests
-from selenium.webdriver.common.by import By
-import tensorflow as tf
-from tensorflow.keras import layers
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.preprocessing import image_dataset_from_directory
+import tensorflow as tf
+from tensorflow.keras import layers
 
 NUM_CLASSES = 6
 IMG_SIZE = 64
@@ -89,16 +82,15 @@ def train_model(train_ds, validation_ds, epochs, progress_bar):
 def main():
     st.title("Google Images Scraper & Classifier with Streamlit")
 
-    # Sidebar for Model Training
-    st.sidebar.header("Model Training Settings")
-    epochs = st.sidebar.slider("Number of epochs:", min_value=1, max_value=50, value=20)
+    # Model Training Settings
+    epochs = st.slider("Number of epochs:", min_value=1, max_value=50, value=20)
 
-    if st.sidebar.button("Train Model"):
+    if st.button("Train Model"):
         # Execute model training
-        st.sidebar.text("Training in progress...")
+        st.text("Training in progress...")
 
         # Create progress bar for training
-        progress_bar = st.sidebar.progress(0)
+        progress_bar = st.progress(0)
 
         # Create the training dataset from the 'images' directory
         train_ds = image_dataset_from_directory(
