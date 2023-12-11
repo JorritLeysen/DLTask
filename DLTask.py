@@ -38,26 +38,53 @@ def create_model():
 
 def train_model(train_ds, validation_ds, epochs, progress_bar):
     model = create_model()
-    num_batches = len(train_ds)
-    
-    for epoch in range(epochs):
-        for i, (images, labels) in enumerate(train_ds):
-            # Training steps go here
-            history = model.fit(train_ds,
-                validation_data = validation_ds,
-                epochs = epochs
-                )
-            
-            # Update the progress bar
-            progress_bar.progress((i + 1) / num_batches)
 
-        # Validation steps go here
-        # validation_loss, validation_accuracy = model.evaluate(validation_ds)
+    # Lists to store training history
+    training_loss = []
+    training_accuracy = []
+    validation_loss = []
+    validation_accuracy = []
+
+    for epoch in range(epochs):
+        # Training steps
+        history = model.fit(train_ds, validation_data=validation_ds, epochs=1)
+
+        # Update training history lists
+        training_loss.append(history.history['loss'][0])
+        training_accuracy.append(history.history['accuracy'][0])
+        validation_loss.append(history.history['val_loss'][0])
+        validation_accuracy.append(history.history['val_accuracy'][0])
+
+        # Update the progress bar
+        progress_bar.progress((epoch + 1) / epochs)
 
         # Display training progress for each epoch
-        st.write(f"Epoch {epoch + 1}/{epochs} - Training Loss: ... - Training Accuracy: ... - Validation Loss: ... - Validation Accuracy: ...")
+        st.write(f"Epoch {epoch + 1}/{epochs} - "
+                 f"Training Loss: {training_loss[-1]:.4f} - "
+                 f"Training Accuracy: {training_accuracy[-1]:.4f} - "
+                 f"Validation Loss: {validation_loss[-1]:.4f} - "
+                 f"Validation Accuracy: {validation_accuracy[-1]:.4f}")
 
     st.success("Training complete!")
+
+    # Visualize training history
+    st.subheader("Training History")
+
+    # Training Loss
+    st.line_chart(training_loss, use_container_width=True)
+    st.subheader("Training Loss")
+
+    # Training Accuracy
+    st.line_chart(training_accuracy, use_container_width=True)
+    st.subheader("Training Accuracy")
+
+    # Validation Loss
+    st.line_chart(validation_loss, use_container_width=True)
+    st.subheader("Validation Loss")
+
+    # Validation Accuracy
+    st.line_chart(validation_accuracy, use_container_width=True)
+    st.subheader("Validation Accuracy")
 
 def main():
     st.title("Google Images Scraper & Classifier with Streamlit")
