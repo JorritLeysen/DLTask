@@ -60,6 +60,25 @@ def train_model(train_ds, validation_ds, epochs, progress_bar):
 
     st.success("Training complete!")
 
+    # Visualize training history
+    st.subheader("Training History")
+
+    # Training Loss
+    st.line_chart(training_loss, use_container_width=True)
+    st.subheader("Training Loss")
+
+    # Training Accuracy
+    st.line_chart(training_accuracy, use_container_width=True)
+    st.subheader("Training Accuracy")
+
+    # Validation Loss
+    st.line_chart(validation_loss, use_container_width=True)
+    st.subheader("Validation Loss")
+
+    # Validation Accuracy
+    st.line_chart(validation_accuracy, use_container_width=True)
+    st.subheader("Validation Accuracy")
+
     # Return the trained model
     return model
 
