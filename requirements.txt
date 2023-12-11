@@ -1,7 +1,6 @@
-pandas
-numpy
-matplotlib
-ucimlrepo
-scikit-learn
-category_encoders
-streamlit
+selenium==4.1.0
+requests==2.26.0
+beautifulsoup4==4.10.0
+tensorflow==2.7.0
+streamlit==1.14.0
+matplotlib==3.4.3
