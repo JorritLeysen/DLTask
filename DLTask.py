@@ -106,7 +106,7 @@ def train_model(train_ds, validation_ds, epochs, progress_bar):
     return model
 
 def main():
-    st.title("Google Images Scraper & Classifier with Streamlit")
+    st.title("Image classifier")
 
     # Model Training Settings
     epochs = st.slider("Number of epochs:", min_value=1, max_value=50, value=20)
@@ -123,7 +123,7 @@ def main():
             directory='./images',
             labels='inferred',
             label_mode='categorical',
-            batch_size=16,
+            batch_size=8,
             image_size=(IMG_SIZE, IMG_SIZE),
             validation_split=0.2,
             subset='training',
@@ -135,7 +135,7 @@ def main():
             directory='./images',
             labels='inferred',
             label_mode='categorical',
-            batch_size=16,
+            batch_size=8,
             image_size=(IMG_SIZE, IMG_SIZE),
             validation_split=0.2,
             subset='validation',
@@ -147,7 +147,7 @@ def main():
             directory='./testimages',
             labels='inferred',
             label_mode='categorical',
-            batch_size=16,
+            batch_size=8,
             image_size=(IMG_SIZE, IMG_SIZE)
         )
 
