@@ -33,7 +33,7 @@ def create_model():
     model.compile(optimizer=Adam(), loss='categorical_crossentropy', metrics=['accuracy'])
     return model
 
-@st.cache_data
+@st.cache_resource
 def train_model(train_ds, validation_ds, epochs, progress_bar):
     model = create_model()
 
