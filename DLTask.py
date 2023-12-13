@@ -8,6 +8,7 @@ import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
 import psutil
+import os
 
 NUM_CLASSES = 6
 IMG_SIZE = 64
