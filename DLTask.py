@@ -38,6 +38,10 @@ def train_model(train_ds, validation_ds, epochs, progress_bar):
     validation_loss = []
     validation_accuracy = []
 
+    # Lists to store true and predicted labels
+    y_true = []
+    y_pred = []
+
     for epoch in range(epochs):
         # Training steps
         history = model.fit(train_ds, validation_data=validation_ds, epochs=1)
@@ -57,6 +61,11 @@ def train_model(train_ds, validation_ds, epochs, progress_bar):
                  f"Training Accuracy: {training_accuracy[-1]:.4f} - "
                  f"Validation Loss: {validation_loss[-1]:.4f} - "
                  f"Validation Accuracy: {validation_accuracy[-1]:.4f}")
+
+        # Store true and predicted labels during training
+        for x, y in validation_ds:
+            y_true.extend(np.argmax(y.numpy(), axis=1))
+            y_pred.extend(np.argmax(model.predict(x), axis=1))
 
     st.success("Training complete!")
 
@@ -78,6 +87,15 @@ def train_model(train_ds, validation_ds, epochs, progress_bar):
     # Validation Accuracy
     st.subheader("Validation Accuracy")
     st.line_chart(validation_accuracy, use_container_width=True)
+
+    # Confusion Matrix
+    cm = confusion_matrix(y_true, y_pred)
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=[f'Class {i}' for i in range(NUM_CLASSES)], yticklabels=[f'Class {i}' for i in range(NUM_CLASSES)])
+    plt.xlabel('Predicted')
+    plt.ylabel('Actual')
+    plt.title('Confusion Matrix')
+    st.pyplot()
     
     # Return the trained model
     return model
