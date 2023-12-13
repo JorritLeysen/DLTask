@@ -7,6 +7,7 @@ from sklearn.metrics import confusion_matrix
 import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
+import psutil
 
 NUM_CLASSES = 6
 IMG_SIZE = 64
@@ -111,6 +112,10 @@ def train_model(train_ds, validation_ds, epochs, progress_bar):
 
 def main():
     st.title("Image classifier")
+
+    # Log memory usage
+    process = psutil.Process(os.getpid())
+    st.write(f"Memory usage: {process.memory_info().rss / 1024 / 1024:.2f} MB")
 
     # Model Training Settings
     epochs = st.slider("Number of epochs:", min_value=1, max_value=50, value=20)
