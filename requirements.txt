@@ -1,10 +1,9 @@
 selenium
+scikit-learn
 requests
 beautifulsoup4
 tensorflow
 streamlit
 matplotlib
 numpy
-scikit-learn
 seaborn
-sklearn
