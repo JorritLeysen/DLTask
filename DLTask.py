@@ -55,6 +55,10 @@ def train_model(train_ds, validation_ds, epochs, progress_bar):
     for epoch in range(epochs):
         # Training steps
         history = model.fit(train_ds, validation_data=validation_ds, steps_per_epoch=20, epochs=1)
+        
+        # Log memory usage
+        process = psutil.Process(os.getpid())
+        st.write(f"Memory usage: {process.memory_info().rss / 1024 / 1024:.2f} MB")
 
         # Update training history lists
         training_loss.append(history.history['loss'][0])
