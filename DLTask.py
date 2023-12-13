@@ -93,6 +93,7 @@ def train_model(train_ds, validation_ds, epochs, progress_bar):
     st.line_chart(validation_accuracy, use_container_width=True)
 
     # Confusion Matrix
+    st.set_option('deprecation.showPyplotGlobalUse', False)
     cm = confusion_matrix(y_true, y_pred)
     plt.figure(figsize=(8, 6))
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=[f'Class {i}' for i in range(NUM_CLASSES)], yticklabels=[f'Class {i}' for i in range(NUM_CLASSES)])
