@@ -48,7 +48,7 @@ def train_model(train_ds, validation_ds, epochs, progress_bar):
 
     for epoch in range(epochs):
         # Training steps
-        history = model.fit(train_ds, validation_data=validation_ds, epochs=1)
+        history = model.fit(train_ds, validation_data=validation_ds, steps_per_epoch=1, epochs=1)
 
         # Update training history lists
         training_loss.append(history.history['loss'][0])
@@ -123,7 +123,7 @@ def main():
             directory='./images',
             labels='inferred',
             label_mode='categorical',
-            batch_size=16,
+            batch_size=8,
             image_size=(IMG_SIZE, IMG_SIZE),
             validation_split=0.2,
             subset='training',
@@ -135,7 +135,7 @@ def main():
             directory='./images',
             labels='inferred',
             label_mode='categorical',
-            batch_size=16,
+            batch_size=8,
             image_size=(IMG_SIZE, IMG_SIZE),
             validation_split=0.2,
             subset='validation',
@@ -147,7 +147,7 @@ def main():
             directory='./testimages',
             labels='inferred',
             label_mode='categorical',
-            batch_size=16,
+            batch_size=8,
             image_size=(IMG_SIZE, IMG_SIZE)
         )
 
