@@ -5,3 +5,5 @@ tensorflow
 streamlit
 matplotlib
 numpy
+scikit-learn
+seaborn
