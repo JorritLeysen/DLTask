@@ -9,7 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 NUM_CLASSES = 6
-IMG_SIZE = 64
+IMG_SIZE = 128
 HEIGTH_FACTOR = 0.2
 WIDTH_FACTOR = 0.2
 
@@ -48,7 +48,7 @@ def train_model(train_ds, validation_ds, epochs, progress_bar):
 
     for epoch in range(epochs):
         # Training steps
-        history = model.fit(train_ds, validation_data=validation_ds, steps_per_epoch=10, epochs=1)
+        history = model.fit(train_ds, validation_data=validation_ds, epochs=1)
 
         # Update training history lists
         training_loss.append(history.history['loss'][0])
