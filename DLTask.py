@@ -19,7 +19,7 @@ WIDTH_FACTOR = 0.2
 def load_images():
     return './images'
     
-@st.cache_data
+@st.cache_resource
 def create_model():
     model = tf.keras.Sequential([
         layers.Resizing(IMG_SIZE, IMG_SIZE),
