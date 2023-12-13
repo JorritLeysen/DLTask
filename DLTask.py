@@ -13,6 +13,10 @@ IMG_SIZE = 64
 HEIGTH_FACTOR = 0.2
 WIDTH_FACTOR = 0.2
 
+@st.cache_data
+def load_images():
+    return './images'
+
 def create_model():
     model = tf.keras.Sequential([
         layers.Resizing(IMG_SIZE, IMG_SIZE),
@@ -33,7 +37,6 @@ def create_model():
     model.compile(optimizer=Adam(), loss='categorical_crossentropy', metrics=['accuracy'])
     return model
 
-@st.cache_resource
 def train_model(train_ds, validation_ds, epochs, progress_bar):
     model = create_model()
 
@@ -121,7 +124,7 @@ def main():
 
         # Create the training dataset from the 'images' directory
         train_ds = image_dataset_from_directory(
-            directory='./images',
+            directory=load_images(),
             labels='inferred',
             label_mode='categorical',
             batch_size=8,
@@ -133,7 +136,7 @@ def main():
 
         # Create the validation dataset from the 'images' directory
         validation_ds = image_dataset_from_directory(
-            directory='./images',
+            directory=load_images(),
             labels='inferred',
             label_mode='categorical',
             batch_size=8,
