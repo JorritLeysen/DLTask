@@ -3,6 +3,9 @@ from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.preprocessing import image_dataset_from_directory
 import tensorflow as tf
 from tensorflow.keras import layers
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+import numpy as np
 
 NUM_CLASSES = 6
 IMG_SIZE = 64
