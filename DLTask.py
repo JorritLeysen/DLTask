@@ -11,14 +11,15 @@ import psutil
 import os
 
 NUM_CLASSES = 6
-IMG_SIZE = 64
+IMG_SIZE = 32
 HEIGTH_FACTOR = 0.2
 WIDTH_FACTOR = 0.2
 
 @st.cache_data
 def load_images():
     return './images'
-
+    
+@st.cache_data
 def create_model():
     model = tf.keras.Sequential([
         layers.Resizing(IMG_SIZE, IMG_SIZE),
@@ -54,7 +55,7 @@ def train_model(train_ds, validation_ds, epochs, progress_bar):
 
     for epoch in range(epochs):
         # Training steps
-        history = model.fit(train_ds, validation_data=validation_ds, steps_per_epoch=20, epochs=1)
+        history = model.fit(train_ds, validation_data=validation_ds, epochs=1)
         
         # Log memory usage
         process = psutil.Process(os.getpid())
@@ -137,7 +138,7 @@ def main():
             directory=load_images(),
             labels='inferred',
             label_mode='categorical',
-            batch_size=8,
+            batch_size=4,
             image_size=(IMG_SIZE, IMG_SIZE),
             validation_split=0.2,
             subset='training',
@@ -149,7 +150,7 @@ def main():
             directory=load_images(),
             labels='inferred',
             label_mode='categorical',
-            batch_size=8,
+            batch_size=4,
             image_size=(IMG_SIZE, IMG_SIZE),
             validation_split=0.2,
             subset='validation',
@@ -161,7 +162,7 @@ def main():
             directory='./testimages',
             labels='inferred',
             label_mode='categorical',
-            batch_size=8,
+            batch_size=4,
             image_size=(IMG_SIZE, IMG_SIZE)
         )
 
