@@ -48,7 +48,7 @@ def train_model(train_ds, validation_ds, epochs, progress_bar):
 
     for epoch in range(epochs):
         # Training steps
-        history = model.fit(train_ds, validation_data=validation_ds, epochs=1)
+        history = model.fit(train_ds, validation_data=validation_ds, steps_per_epoch=20, epochs=1)
 
         # Update training history lists
         training_loss.append(history.history['loss'][0])
