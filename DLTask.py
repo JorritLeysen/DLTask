@@ -6,6 +6,7 @@ from tensorflow.keras import layers
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
 import numpy as np
+import matplotlib.pyplot as plt
 
 NUM_CLASSES = 6
 IMG_SIZE = 64
