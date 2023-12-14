@@ -19,6 +19,7 @@ def load_pretrained_model():
     return model
 
 def main():
+    st.set_option('deprecation.showPyplotGlobalUse', False)
     st.title("Image Classifier")
 
     # Load the pre-trained model
