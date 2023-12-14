@@ -22,6 +22,8 @@ def main():
     st.set_option('deprecation.showPyplotGlobalUse', False)
     st.title("Image Classifier")
 
+    class_names = ['bicycle', 'boat', 'car', 'motorcycle', 'plane', 'truck']
+
     # Load the pre-trained model
     pretrained_model = load_pretrained_model()
 
@@ -42,7 +44,8 @@ def main():
         # Display predictions
         st.write("Predictions:")
         for i, prob in enumerate(predictions[0]):
-            st.write(f"Class {i}: Probability {prob:.4f}")
+            class_name = class_names[i]
+            st.write(f"Class {class_name}: Probability {prob:.4f}")
 
     # Evaluate the model on the test dataset
     st.subheader("Test on testimages")
