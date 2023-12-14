@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import os
 
 NUM_CLASSES = 6
-IMG_SIZE = 32
+IMG_SIZE = 128
 
 @st.cache_resource
 def load_pretrained_model():
